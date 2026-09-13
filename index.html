@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Explore the Colosseum — the iconic Flavian Amphitheatre of ancient Rome. Discover its history, architecture, gladiatorial culture, and interactive 3D experience. An immersive digital journey through one of the world's greatest historical monuments.">
+  <meta name="keywords"
+    content="Colosseum, Rome, ancient Rome, gladiators, Flavian Amphitheatre, Roman history, Italy, archaeological site">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="The Colosseum — The Eternal Arena">
+  <meta property="og:title" content="The Colosseum — Explore Ancient Rome | Rome, Italy">
+  <meta property="og:description"
+    content="An immersive cinematic digital experience exploring the Colosseum — architecture, history, gladiators, 3D tour, and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Colosseum — The Eternal Arena">
+  <link rel="canonical" href="index.html">
+  <title>The Colosseum — Explore Ancient Rome | Rome, Italy</title>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    "name": "The Colosseum",
+    "alternateName": "Flavian Amphitheatre",
+    "description": "The Colosseum, or Flavian Amphitheatre, is an oval amphitheatre in the centre of Rome, Italy, built during the Flavian dynasty.",
+    "url": "index.html",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Piazza del Colosseo",
+      "postalCode": "00184",
+      "addressLocality": "Rome",
+      "addressCountry": "IT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.8902,
+      "longitude": 12.4922
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    }
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ -->
+  <div id="scroll-progress" role="progressbar" aria-label="Page scroll progress"></div>
+
+  <!-- ============================================================
+   CUSTOM CURSOR (Desktop Only)
+   ============================================================ -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-label" id="cursor-label" aria-hidden="true">VIEW</div>
+
+  <!-- ============================================================
+   LOADING SCREEN
+   ============================================================ -->
+  <div id="loading-screen" role="status" aria-label="Loading">
+    <div class="loading-emblem">
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="40" cy="40" rx="38" ry="38" stroke="#c4962a" stroke-width="0.5" opacity="0.4" />
+        <ellipse cx="40" cy="40" rx="28" ry="28" stroke="#c4962a" stroke-width="0.5" opacity="0.6" />
+        <ellipse cx="40" cy="40" rx="18" ry="18" stroke="#c4962a" stroke-width="0.5" />
+        <!-- Arch motif -->
+        <path d="M26 52 L26 38 Q26 28 40 28 Q54 28 54 38 L54 52" stroke="#c4962a" stroke-width="1.5" fill="none" />
+        <line x1="22" y1="52" x2="58" y2="52" stroke="#c4962a" stroke-width="1.5" />
+        <line x1="22" y1="55" x2="58" y2="55" stroke="#c4962a" stroke-width="0.5" />
+      </svg>
+    </div>
+    <div class="loading-title" data-translate="loadingTitle">THE COLOSSEUM</div>
+    <div class="loading-subtitle" data-translate="loadingSubtitle">Rome, Italy · The Eternal Arena</div>
+    <div class="loading-bar-container">
+      <div class="loading-bar" id="loading-bar"></div>
+    </div>
+    <div class="loading-percent" id="loading-percent">0%</div>
+  </div>
+
+  <!-- ============================================================
+   MOBILE NAV OVERLAY
+   ============================================================ -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="#hero" data-translate="navHome">Home</a>
+    <a href="#history" data-translate="navHistory">History</a>
+    <a href="#architecture" data-translate="navArchitecture">Architecture</a>
+    <a href="#experience-3d" data-translate="nav3D">3D Experience</a>
+    <a href="#timeline" data-translate="navTimeline">Timeline</a>
+    <a href="#gladiators" data-translate="navGladiators">Gladiators</a>
+    <a href="#gallery" data-translate="navGallery">Gallery</a>
+    <a href="#rome-map" data-translate="navLocation">Location</a>
+    <a href="#facts" data-translate="navFacts">Facts</a>
+    <div class="mobile-nav-controls">
+      <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" data-lang="ar" onclick="switchLang('ar')">AR</button>
+      <button class="nav-btn" id="mobile-theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+   NAVIGATION
+   ============================================================ -->
+  <header id="navbar" role="banner">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="The Colosseum - Home">
+        <span class="nav-logo-main">THE COLOSSEUM</span>
+        <span class="nav-logo-sub" data-translate="navSubtitle">The Eternal Arena · Rome</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#hero" data-translate="navHome">Home</a></li>
+        <li><a href="#history" data-translate="navHistory">History</a></li>
+        <li><a href="#architecture" data-translate="navArchitecture">Architecture</a></li>
+        <li><a href="#experience-3d" data-translate="nav3D">3D</a></li>
+        <li><a href="#timeline" data-translate="navTimeline">Timeline</a></li>
+        <li><a href="#gladiators" data-translate="navGladiators">Gladiators</a></li>
+        <li><a href="#gallery" data-translate="navGallery">Gallery</a></li>
+        <li><a href="#rome-map" data-translate="navLocation">Location</a></li>
+        <li><a href="#facts" data-translate="navFacts">Facts</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <div class="lang-switcher" role="group" aria-label="Language selection">
+          <button class="lang-btn active" data-lang="en" id="lang-en" onclick="switchLang('en')"
+            aria-pressed="true">EN</button>
+          <span class="lang-divider" aria-hidden="true">|</span>
+          <button class="lang-btn" data-lang="ar" id="lang-ar" onclick="switchLang('ar')"
+            aria-pressed="false">AR</button>
+        </div>
+        <button class="nav-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+          <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false"
+          aria-controls="mobile-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+   HERO SECTION
+   ============================================================ -->
+    <section id="hero" aria-label="Hero — The Colosseum">
+      <div class="hero-bg" id="hero-bg" role="img" aria-label="The Colosseum at golden hour dusk"></div>
+      <div class="hero-overlay"></div>
+
+      <!-- Particles -->
+      <div class="hero-particles" id="hero-particles" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow" data-translate="heroEyebrow">Rome, Italy · 72–80 CE</div>
+        <h1 class="hero-title">
+          THE<br>COLOSSEUM
+          <span data-translate="heroSubtitle">Anfiteatro Flavio · Rome</span>
+        </h1>
+        <p class="hero-quote" data-translate="heroQuote">Where the stones of Rome still remember the roar of history.
+        </p>
+        <p class="hero-desc" data-translate="heroDesc">
+          One of the most iconic surviving monuments of ancient Rome — an elliptical amphitheatre commissioned under
+          Emperor Vespasian, inaugurated under Titus, and a symbol of civilisation for nearly two millennia.
+        </p>
+        <div class="hero-ctas">
+          <a href="#introduction" class="btn-primary" id="cta-explore" data-cursor-label="EXPLORE"
+            data-translate="heroCTA1">
+            <span>Explore the Colosseum</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </a>
+          <a href="#experience-3d" class="btn-outline" id="cta-3d" data-cursor-label="ENTER" data-translate="heroCTA2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg>
+            <span>Enter 3D Experience</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <span class="hero-scroll-text">Scroll</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   INTRODUCTION SECTION
+   ============================================================ -->
+    <section id="introduction" aria-labelledby="intro-heading">
+      <div class="section-inner">
+
+        <div class="intro-split">
+          <!-- Left: Image -->
+          <div class="intro-image-wrapper reveal-left" data-cursor-label="VIEW">
+            <img src="assets/images/intro-arch.jpg"
+              alt="The Colosseum's exterior arched facade — three tiers of travertine limestone arches"
+              class="intro-image" loading="lazy" width="800" height="1067">
+            <div class="intro-image-label" data-translate="introImageLabel">Exterior · South Facade</div>
+          </div>
+
+          <!-- Right: Content -->
+          <div class="intro-content reveal-right">
+            <div class="section-label" data-translate="introLabel">The Monument</div>
+            <h2 class="section-title" id="intro-heading" data-translate="introTitle">The Icon of Ancient Rome</h2>
+            <div class="ornament" aria-hidden="true">
+              <div class="ornament-line"></div>
+              <div class="ornament-diamond"></div>
+              <div class="ornament-line right"></div>
+            </div>
+            <p class="section-text" style="margin-bottom:1.5rem" data-translate="introText1">
+              The Colosseum — also known as the Flavian Amphitheatre (Anfiteatro Flavio) — stands as one of the greatest
+              engineering achievements of the ancient world. Commissioned by Emperor Vespasian around 72 CE and
+              inaugurated by his son Titus in approximately 80 CE, it remains the largest amphitheatre ever built.
+            </p>
+            <p class="section-text" data-translate="introText2">
+              For centuries, this massive structure hosted public spectacles — including gladiatorial contests, animal
+              hunts (venationes), public performances, and reenactments of famous battles. Scholars estimate it could
+              accommodate somewhere between 50,000 and 80,000 spectators across its tiered seating.
+            </p>
+
+            <!-- Animated Stats -->
+            <div class="stats-grid" style="margin-top:2.5rem" role="list">
+              <div class="stat-item" role="listitem">
+                <span class="stat-value" data-count-to="80" data-suffix=" CE">~72 CE</span>
+                <span class="stat-label" data-translate="statConstruction">Construction Began</span>
+              </div>
+              <div class="stat-item" role="listitem">
+                <span class="stat-value" data-count-to="80000" data-prefix="~" data-suffix="+">50,000+</span>
+                <span class="stat-label" data-translate="statCapacity">Est. Spectator Capacity</span>
+              </div>
+              <div class="stat-item" role="listitem">
+                <span class="stat-value" data-count-to="48" data-suffix=" m+">48 m</span>
+                <span class="stat-label" data-translate="statHeight">Original Height (approx.)</span>
+              </div>
+              <div class="stat-item" role="listitem">
+                <span class="stat-value">ROME</span>
+                <span class="stat-label" data-translate="statLocation">Italy 🇮🇹</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+   HISTORY SECTION
+   ============================================================ -->
+    <section id="history" aria-labelledby="history-heading">
+      <div class="section-inner">
+
+        <div class="history-intro reveal">
+          <div class="section-label" data-translate="historyLabel">Through the Ages</div>
+          <h2 class="section-title" id="history-heading" data-translate="historyTitle">Two Thousand Years of History
+          </h2>
+          <p class="section-subtitle" data-translate="historySubtitle">From imperial spectacle to eternal monument</p>
+        </div>
+
+        <div class="history-grid">
+
+          <!-- Card 1 -->
+          <article class="history-card reveal" style="transition-delay:0.1s">
+            <div class="history-card-visual">
+              <div class="history-card-visual-bg hbg-1 bg-hero">
+                <div class="hbg-icon" aria-hidden="true">⚒️</div>
+              </div>
+              <div class="history-card-era" data-translate="era1">Construction</div>
+            </div>
+            <div class="history-card-body">
+              <div class="history-card-date">c. 72 CE</div>
+              <h3 class="history-card-title" data-translate="hist1Title">The Flavian Vision Begins</h3>
+              <p class="history-card-text" data-translate="hist1Text">Emperor Vespasian commissioned the Colosseum on
+                the site of Nero's artificial lake, part of the Domus Aurea complex. Roman engineering — including
+                travertine limestone, tuff, concrete (opus caementicium), and brick — combined in an unprecedented scale
+                of construction.</p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="history-card reveal" style="transition-delay:0.2s">
+            <div class="history-card-visual">
+              <div class="history-card-visual-bg hbg-2">
+                <div class="hbg-icon" aria-hidden="true">🏛️</div>
+              </div>
+              <div class="history-card-era" data-translate="era2">Inauguration</div>
+            </div>
+            <div class="history-card-body">
+              <div class="history-card-date">80 CE</div>
+              <h3 class="history-card-title" data-translate="hist2Title">Titus Opens the Arena</h3>
+              <p class="history-card-text" data-translate="hist2Text">Emperor Titus inaugurated the Colosseum with
+                approximately 100 days of games. Ancient sources describe elaborate spectacles. Emperor Domitian later
+                added a fourth tier and the underground hypogeum. The structure reached its full monumental form during
+                the Flavian dynasty.</p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="history-card reveal" style="transition-delay:0.3s">
+            <div class="history-card-visual">
+              <div class="history-card-visual-bg hbg-3">
+                <div class="hbg-icon" aria-hidden="true">⚔️</div>
+              </div>
+              <div class="history-card-era" data-translate="era3">The Spectacles</div>
+            </div>
+            <div class="history-card-body">
+              <div class="history-card-date">1st–5th c. CE</div>
+              <h3 class="history-card-title" data-translate="hist3Title">The Age of Spectacle</h3>
+              <p class="history-card-text" data-translate="hist3Text">For several centuries, the Colosseum hosted
+                gladiatorial contests (munera), animal hunts (venationes), and public executions. Ancient sources
+                suggest that hundreds of thousands of animals were killed over the venue's active period. These events
+                were deeply embedded in Roman political and social life.</p>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="history-card reveal" style="transition-delay:0.1s">
+            <div class="history-card-visual">
+              <div class="history-card-visual-bg hbg-4">
+                <div class="hbg-icon" aria-hidden="true">🔥</div>
+              </div>
+              <div class="history-card-era" data-translate="era4">Decline</div>
+            </div>
+            <div class="history-card-body">
+              <div class="history-card-date">217–443 CE</div>
+              <h3 class="history-card-title" data-translate="hist4Title">Fire and Earthquake</h3>
+              <p class="history-card-text" data-translate="hist4Text">In 217 CE, a severe fire caused significant damage
+                to the upper wooden tiers. Repairs were made, but recurring earthquakes — particularly those of 443 CE
+                and later 1231 CE and 1349 CE — caused major structural damage and the collapse of large sections of the
+                outer south wall.</p>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="history-card reveal" style="transition-delay:0.2s">
+            <div class="history-card-visual">
+              <div class="history-card-visual-bg hbg-5">
+                <div class="hbg-icon" aria-hidden="true">🏰</div>
+              </div>
+              <div class="history-card-era" data-translate="era5">Medieval Period</div>
+            </div>
+            <div class="history-card-body">
+              <div class="history-card-date">6th–16th c.</div>
+              <h3 class="history-card-title" data-translate="hist5Title">Repurposed Through the Ages</h3>
+              <p class="history-card-text" data-translate="hist5Text">After gladiatorial games ended — possibly in the
+                early 5th century — the Colosseum was used as a quarry for building materials, as a Christian shrine, as
+                a fortress, workshops, and even housing at various points. Significant amounts of its original stone
+                were reused in St. Peter's Basilica and other structures.</p>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="history-card reveal" style="transition-delay:0.3s">
+            <div class="history-card-visual">
+              <div class="history-card-visual-bg hbg-6">
+                <div class="hbg-icon" aria-hidden="true">🌍</div>
+              </div>
+              <div class="history-card-era" data-translate="era6">Modernity</div>
+            </div>
+            <div class="history-card-body">
+              <div class="history-card-date">18th c. – Present</div>
+              <h3 class="history-card-title" data-translate="hist6Title">From Ruin to World Heritage</h3>
+              <p class="history-card-text" data-translate="hist6Text">Beginning in the 18th century, popes and scholars
+                began taking preservation seriously. Pope Benedict XIV (1740s) consecrated the Colosseum as a sacred
+                site in memory of Christian martyrs — though modern historians debate the extent of Christian martyrdom
+                there. Today it is a UNESCO World Heritage Site and one of the world's most visited landmarks.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   TIMELINE SECTION
+   ============================================================ -->
+    <section id="timeline" aria-labelledby="timeline-heading">
+      <div class="section-inner">
+        <div class="timeline-header reveal">
+          <div class="section-label" data-translate="timelineLabel">Key Dates</div>
+          <h2 class="section-title" id="timeline-heading" data-translate="timelineTitle">A Chronicle of the Colosseum
+          </h2>
+          <p class="section-subtitle" data-translate="timelineSubtitle">From foundation stone to world wonder</p>
+        </div>
+      </div>
+
+      <!-- Scrollable Timeline Track -->
+      <div class="timeline-container" role="region" aria-label="Interactive timeline">
+        <div class="timeline-track" id="timeline-track">
+
+          <div class="timeline-event above" data-year="c.72 CE" data-title-key="tl1Title"
+            data-title="Construction Begins" data-text-key="tl1Text"
+            data-text="Emperor Vespasian commissions construction of the Flavian Amphitheatre on the site of Nero's former lake. Thousands of workers and slaves labour on what will become the largest amphitheatre in the Roman world."
+            role="button" tabindex="0">
+            <div class="timeline-event-content">
+              <span class="timeline-year">c. 72 CE</span>
+              <p class="timeline-event-title" data-translate="tl1Title">Construction Begins</p>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-event" data-year="80 CE" data-title-key="tl2Title" data-title="Grand Inauguration"
+            data-text-key="tl2Text"
+            data-text="Emperor Titus inaugurates the Colosseum with approximately 100 days of games. The event is celebrated throughout the Roman Empire as a demonstration of imperial power and generosity."
+            role="button" tabindex="0">
+            <div class="timeline-dot"></div>
+            <div class="timeline-event-content">
+              <span class="timeline-year">80 CE</span>
+              <p class="timeline-event-title" data-translate="tl2Title">Grand Inauguration</p>
+            </div>
+          </div>
+
+          <div class="timeline-event above" data-year="81–96 CE" data-title-key="tl3Title"
+            data-title="Domitian's Additions" data-text-key="tl3Text"
+            data-text="Emperor Domitian adds a fourth tier to the seating structure and constructs the underground hypogeum — an elaborate system of tunnels, rooms, and mechanical lifts that would become essential to the spectacles."
+            role="button" tabindex="0">
+            <div class="timeline-event-content">
+              <span class="timeline-year">81–96 CE</span>
+              <p class="timeline-event-title" data-translate="tl3Title">Domitian's Additions</p>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-event" data-year="217 CE" data-title-key="tl4Title" data-title="Great Fire"
+            data-text-key="tl4Text"
+            data-text="A major fire — possibly started by a lightning strike — causes severe damage to the upper wooden tiers and seating. Repairs and restoration continue for several decades under subsequent emperors."
+            role="button" tabindex="0">
+            <div class="timeline-dot"></div>
+            <div class="timeline-event-content">
+              <span class="timeline-year">217 CE</span>
+              <p class="timeline-event-title" data-translate="tl4Title">Great Fire Damage</p>
+            </div>
+          </div>
+
+          <div class="timeline-event above" data-year="404–435 CE" data-title-key="tl5Title"
+            data-title="Gladiatorial Games End" data-text-key="tl5Text"
+            data-text="Gladiatorial games are believed to have ended during this period — possibly under Honorius — as the Western Roman Empire declines and Christian influence grows. Animal hunts (venationes) may have continued somewhat longer."
+            role="button" tabindex="0">
+            <div class="timeline-event-content">
+              <span class="timeline-year">c. 404–435 CE</span>
+              <p class="timeline-event-title" data-translate="tl5Title">Games Decline</p>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-event" data-year="443 CE" data-title-key="tl6Title" data-title="Earthquake Damage"
+            data-text-key="tl6Text"
+            data-text="A significant earthquake causes structural damage to the Colosseum. This would be the first of several seismic events that would progressively destabilise sections of the outer wall over subsequent centuries."
+            role="button" tabindex="0">
+            <div class="timeline-dot"></div>
+            <div class="timeline-event-content">
+              <span class="timeline-year">443 CE</span>
+              <p class="timeline-event-title" data-translate="tl6Title">Earthquake Damage</p>
+            </div>
+          </div>
+
+          <div class="timeline-event above" data-year="1349 CE" data-title-key="tl7Title" data-title="Major Earthquake"
+            data-text-key="tl7Text"
+            data-text="A severe earthquake causes the collapse of much of the south outer wall, creating the ruined appearance visible today. Much of the fallen stone is subsequently quarried for use in Renaissance-era buildings across Rome."
+            role="button" tabindex="0">
+            <div class="timeline-event-content">
+              <span class="timeline-year">1349 CE</span>
+              <p class="timeline-event-title" data-translate="tl7Title">South Wall Collapse</p>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-event" data-year="1740s CE" data-title-key="tl8Title" data-title="Sacred Preservation"
+            data-text-key="tl8Text"
+            data-text="Pope Benedict XIV consecrates the Colosseum as a sacred site, halting further quarrying of its stone. This papal intervention is a significant moment in the preservation history of the monument."
+            role="button" tabindex="0">
+            <div class="timeline-dot"></div>
+            <div class="timeline-event-content">
+              <span class="timeline-year">1740s CE</span>
+              <p class="timeline-event-title" data-translate="tl8Title">Papal Consecration</p>
+            </div>
+          </div>
+
+          <div class="timeline-event above" data-year="1980" data-title-key="tl9Title" data-title="UNESCO Recognition"
+            data-text-key="tl9Text"
+            data-text="The Historic Centre of Rome, including the Colosseum, is inscribed as a UNESCO World Heritage Site, recognising its outstanding universal value as a masterpiece of human creative genius and a unique testimony to Roman civilisation."
+            role="button" tabindex="0">
+            <div class="timeline-event-content">
+              <span class="timeline-year">1980</span>
+              <p class="timeline-event-title" data-translate="tl9Title">UNESCO Heritage Site</p>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-event" data-year="Today" data-title-key="tl10Title" data-title="World Icon"
+            data-text-key="tl10Text"
+            data-text="The Colosseum attracts millions of visitors annually and remains one of the world's most recognised archaeological monuments. Ongoing conservation projects — including major restoration works funded by private sponsorship — continue to preserve this extraordinary legacy."
+            role="button" tabindex="0">
+            <div class="timeline-dot"></div>
+            <div class="timeline-event-content">
+              <span class="timeline-year">Today</span>
+              <p class="timeline-event-title" data-translate="tl10Title">Eternal Monument</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Timeline Detail Panel -->
+      <div class="section-inner">
+        <div class="timeline-detail" id="timeline-detail" role="region" aria-live="polite"
+          aria-label="Timeline event details">
+          <div class="timeline-detail-year" id="tl-detail-year">72 CE</div>
+          <h3 class="timeline-detail-title" id="tl-detail-title">Construction Begins</h3>
+          <p class="timeline-detail-text" id="tl-detail-text"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   ARCHITECTURE SECTION
+   ============================================================ -->
+    <section id="architecture" aria-labelledby="arch-heading">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="section-label" data-translate="archLabel">Structure &amp; Engineering</div>
+          <h2 class="section-title" id="arch-heading" data-translate="archTitle">Masterwork of Roman Engineering</h2>
+          <p class="section-subtitle" data-translate="archSubtitle">An ellipse of stone that redefined human ambition
+          </p>
+        </div>
+
+        <div class="arch-intro" style="margin-top:3rem">
+          <!-- Diagram -->
+          <div class="arch-diagram reveal-left">
+            <svg class="arch-diagram-svg" viewBox="0 0 500 375" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Colosseum architectural cross-section diagram">
+              <!-- Background -->
+              <rect width="500" height="375" fill="#1e1a15" />
+              <!-- Ground -->
+              <rect x="0" y="310" width="500" height="65" fill="#2a241c" />
+              <!-- Hypogeum -->
+              <rect x="100" y="260" width="300" height="55" fill="#3d3428" rx="0" />
+              <line x1="100" y1="275" x2="400" y2="275" stroke="#c4962a" stroke-width="0.5" opacity="0.4" />
+              <line x1="100" y1="290" x2="400" y2="290" stroke="#c4962a" stroke-width="0.5" opacity="0.4" />
+              <line x1="140" y1="260" x2="140" y2="315" stroke="#c4962a" stroke-width="0.5" opacity="0.3" />
+              <line x1="180" y1="260" x2="180" y2="315" stroke="#c4962a" stroke-width="0.5" opacity="0.3" />
+              <line x1="220" y1="260" x2="220" y2="315" stroke="#c4962a" stroke-width="0.5" opacity="0.3" />
+              <line x1="260" y1="260" x2="260" y2="315" stroke="#c4962a" stroke-width="0.5" opacity="0.3" />
+              <line x1="300" y1="260" x2="300" y2="315" stroke="#c4962a" stroke-width="0.5" opacity="0.3" />
+              <line x1="340" y1="260" x2="340" y2="315" stroke="#c4962a" stroke-width="0.5" opacity="0.3" />
+              <line x1="380" y1="260" x2="380" y2="315" stroke="#c4962a" stroke-width="0.5" opacity="0.3" />
+              <!-- Arena Floor -->
+              <rect x="110" y="250" width="280" height="12" fill="#5a4030" rx="0" />
+              <text x="250" y="261" text-anchor="middle" fill="#c4962a" font-size="8" font-family="Cinzel,serif"
+                letter-spacing="2">ARENA</text>
+              <!-- Seating Tiers -->
+              <!-- Tier 1 (podium) -->
+              <path d="M90 250 L80 230 L420 230 L410 250 Z" fill="#2d2620" stroke="#c4962a" stroke-width="0.5" />
+              <!-- Tier 2 -->
+              <path d="M70 230 L55 200 L445 200 L430 230 Z" fill="#2a241c" stroke="#c4962a" stroke-width="0.5" />
+              <!-- Tier 3 -->
+              <path d="M40 200 L28 165 L472 165 L460 200 Z" fill="#261f18" stroke="#c4962a" stroke-width="0.5" />
+              <!-- Tier 4 (wooden, attic) -->
+              <path d="M18 165 L10 140 L490 140 L482 165 Z" fill="#221c14" stroke="#c4962a" stroke-width="0.5" />
+              <!-- Outer Wall Left -->
+              <rect x="0" y="40" width="22" height="100" fill="#2d2620" stroke="#c4962a" stroke-width="0.5" />
+              <!-- Outer Wall Right -->
+              <rect x="478" y="40" width="22" height="100" fill="#2d2620" stroke="#c4962a" stroke-width="0.5" />
+              <!-- Arches Layer 1 -->
+              <g stroke="#c4962a" stroke-width="1" fill="none">
+                <!-- Left arches -->
+                <path d="M2 140 L2 90 Q2 70 12 70 Q22 70 22 90 L22 140" />
+                <!-- Right arches -->
+                <path d="M478 140 L478 90 Q478 70 488 70 Q498 70 498 90 L498 140" />
+              </g>
+              <!-- Velarium poles -->
+              <g stroke="#c4962a" stroke-width="0.5" opacity="0.4">
+                <line x1="30" y1="40" x2="50" y2="80" stroke-dasharray="3,3" />
+                <line x1="80" y1="20" x2="100" y2="60" stroke-dasharray="3,3" />
+                <line x1="150" y1="10" x2="160" y2="50" stroke-dasharray="3,3" />
+                <line x1="250" y1="5" x2="250" y2="45" stroke-dasharray="3,3" />
+                <line x1="350" y1="10" x2="340" y2="50" stroke-dasharray="3,3" />
+                <line x1="420" y1="20" x2="400" y2="60" stroke-dasharray="3,3" />
+                <line x1="470" y1="40" x2="450" y2="80" stroke-dasharray="3,3" />
+                <!-- Velarium canvas -->
+                <path d="M30 40 Q100 25 250 20 Q400 25 470 40" stroke-dasharray="4,4" stroke-width="1" opacity="0.5" />
+              </g>
+              <!-- Imperial Box highlight -->
+              <rect x="220" y="230" width="60" height="20" fill="rgba(196,150,42,0.15)" stroke="#c4962a"
+                stroke-width="1" />
+              <text x="250" y="244" text-anchor="middle" fill="#c4962a" font-size="7" font-family="Cinzel,serif"
+                letter-spacing="1.5">IMPERIAL</text>
+
+              <!-- Labels -->
+              <text x="12" y="35" text-anchor="middle" fill="#c4962a" font-size="7.5" font-family="Cinzel,serif"
+                letter-spacing="1">VELARIUM</text>
+              <text x="250" y="180" text-anchor="middle" fill="#8a6820" font-size="8" font-family="Cinzel,serif"
+                letter-spacing="2" opacity="0.7">CAVEA (SEATING)</text>
+              <text x="250" y="345" text-anchor="middle" fill="#8a6820" font-size="8" font-family="Cinzel,serif"
+                letter-spacing="2">HYPOGEUM</text>
+
+              <!-- Dimension arrows -->
+              <g stroke="#c4962a" stroke-width="0.5" opacity="0.5">
+                <line x1="498" y1="40" x2="498" y2="310" />
+                <line x1="494" y1="40" x2="502" y2="40" />
+                <line x1="494" y1="310" x2="502" y2="310" />
+              </g>
+              <text x="495" y="180" fill="#c4962a" font-size="8" font-family="Cinzel,serif"
+                transform="rotate(-90 495 180)" text-anchor="middle" opacity="0.7">~48m</text>
+            </svg>
+
+            <!-- Hotspots -->
+            <button class="arch-hotspot" style="left:50%;top:68%;" data-title="Arena Floor"
+              data-info="The oval arena floor, approximately 83m × 48m, was originally covered with wooden boards topped with sand (harena). Through trapdoors in the floor, animals and equipment could be raised from the hypogeum below."
+              aria-label="Arena hotspot">
+              <span class="arch-hotspot-label right" aria-hidden="true">ARENA</span>
+            </button>
+            <button class="arch-hotspot" style="left:50%;top:88%;" data-title="Hypogeum"
+              data-info="The hypogeum ('underground' in Greek) was an elaborate network of tunnels and chambers beneath the arena floor, added by Emperor Domitian. It housed animals, gladiators, scenery, and mechanical lifts (hinged platforms) that could raise them into the arena."
+              aria-label="Hypogeum hotspot">
+              <span class="arch-hotspot-label right" aria-hidden="true">HYPOGEUM</span>
+            </button>
+            <button class="arch-hotspot" style="left:12%;top:45%;" data-title="Seating Tiers (Cavea)"
+              data-info="The seating (cavea) was arranged in tiered sections reflecting Roman social hierarchy. The lowest tiers (podium) were reserved for senators and Vestal Virgins; middle sections for knights and citizens; upper wooden tiers for women and the poor."
+              aria-label="Seating tiers hotspot">
+              <span class="arch-hotspot-label right" aria-hidden="true">SEATING</span>
+            </button>
+            <button class="arch-hotspot" style="left:50%;top:60%;" data-title="Imperial Box (Pulvinar)"
+              data-info="The emperor sat in the pulvinar — a special elevated box on the south side of the arena — from which he could observe the games and make decisions on combatants' fates, visible to all 50,000+ spectators."
+              aria-label="Imperial box hotspot">
+              <span class="arch-hotspot-label right" aria-hidden="true">IMPERIAL BOX</span>
+            </button>
+            <button class="arch-hotspot" style="left:50%;top:12%;" data-title="Velarium"
+              data-info="A massive retractable canvas awning (velarium) could be deployed to shade spectators from the Mediterranean sun. It was managed by sailors from the Roman navy, attached to poles around the upper rim and held by ropes and pulleys."
+              aria-label="Velarium hotspot">
+              <span class="arch-hotspot-label right" aria-hidden="true">VELARIUM</span>
+            </button>
+          </div>
+
+          <!-- Info Panel -->
+          <div class="arch-info-panel reveal-right" id="arch-info-panel">
+            <div class="arch-panel-default" id="arch-default-msg">
+              <div class="arch-panel-default-icon" aria-hidden="true">🏛️</div>
+              <p class="section-text" style="max-width:none; font-size:0.85rem" data-translate="archClickMsg">Click the
+                glowing hotspots on the diagram to explore individual architectural elements of the Colosseum.</p>
+            </div>
+            <div id="arch-detail-content" style="display:none">
+              <div class="section-label" style="margin-bottom:1rem">
+                <span id="arch-detail-label">Structure</span>
+              </div>
+              <h3 id="arch-detail-title" class="section-title" style="font-size:1.4rem;margin-bottom:1rem"></h3>
+              <p id="arch-detail-text" class="section-text" style="font-size:0.85rem;max-width:none"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architecture Features Grid -->
+        <div class="arch-features" style="margin-top:4rem">
+          <div class="arch-feature reveal" style="transition-delay:0.1s">
+            <div class="arch-feature-icon" aria-hidden="true">🪨</div>
+            <div class="arch-feature-name" data-translate="af1Name">Travertine Limestone</div>
+            <p class="arch-feature-text" data-translate="af1Text">Approximately 100,000 cubic metres of travertine
+              limestone was used in the outer structure, sourced from quarries near Tivoli (Tibur) and transported to
+              Rome by road and river.</p>
+          </div>
+          <div class="arch-feature reveal" style="transition-delay:0.2s">
+            <div class="arch-feature-icon" aria-hidden="true">🏗️</div>
+            <div class="arch-feature-name" data-translate="af2Name">Elliptical Design</div>
+            <p class="arch-feature-text" data-translate="af2Text">The elliptical shape — approximately 188m × 156m —
+              allowed spectators throughout the arena to see the action clearly while preventing combatants from
+              cornering themselves away from view.</p>
+          </div>
+          <div class="arch-feature reveal" style="transition-delay:0.3s">
+            <div class="arch-feature-icon" aria-hidden="true">🚪</div>
+            <div class="arch-feature-name" data-translate="af3Name">Vomitoria</div>
+            <p class="arch-feature-text" data-translate="af3Text">An ingenious system of 80 numbered entrances and exit
+              corridors (vomitoria) allowed the Colosseum to be filled or emptied of its tens of thousands of spectators
+              in approximately 15 minutes.</p>
+          </div>
+          <div class="arch-feature reveal" style="transition-delay:0.1s">
+            <div class="arch-feature-icon" aria-hidden="true">⚓</div>
+            <div class="arch-feature-name" data-translate="af4Name">Roman Concrete</div>
+            <p class="arch-feature-text" data-translate="af4Text">Opus caementicium (Roman concrete), combined with
+              volcanic pozzolana, created extraordinarily durable structures. Modern analysis suggests this concrete may
+              actually strengthen over time through mineralisation.</p>
+          </div>
+          <div class="arch-feature reveal" style="transition-delay:0.2s">
+            <div class="arch-feature-icon" aria-hidden="true">🌉</div>
+            <div class="arch-feature-name" data-translate="af5Name">The Great Arches</div>
+            <p class="arch-feature-text" data-translate="af5Text">The outer wall features three tiers of 80 arched
+              openings, each decorated with engaged columns: Doric on the first level, Ionic on the second, and
+              Corinthian on the third — a deliberate architectural hierarchy.</p>
+          </div>
+          <div class="arch-feature reveal" style="transition-delay:0.3s">
+            <div class="arch-feature-icon" aria-hidden="true">⚙️</div>
+            <div class="arch-feature-name" data-translate="af6Name">The Hypogeum</div>
+            <p class="arch-feature-text" data-translate="af6Text">The two-level underground network of passages and
+              chambers — completed under Domitian — used a system of winches, pulleys, and hinged platforms to raise
+              animals and combatants dramatically into the arena.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   3D EXPERIENCE SECTION
+   ============================================================ -->
+    <section id="experience-3d" aria-labelledby="three-heading">
+      <div class="section-inner">
+        <div class="experience-header reveal">
+          <div class="section-label" data-translate="threeLabel">Interactive Experience</div>
+          <h2 class="section-title" id="three-heading" data-translate="threeTitle">3D Colosseum Experience</h2>
+          <p class="section-subtitle" data-translate="threeSubtitle">Rotate · Zoom · Explore · Discover</p>
+        </div>
+
+        <div class="three-container reveal-scale" style="margin-top:2.5rem" id="three-wrapper">
+          <!-- Loading Overlay -->
+          <div class="three-loading" id="three-loading">
+            <div class="three-spinner"></div>
+            <div class="three-loading-text" data-translate="threeLoading">Building the arena…</div>
+          </div>
+
+          <!-- Canvas -->
+          <canvas id="three-canvas" aria-label="Interactive 3D model of the Colosseum"></canvas>
+
+          <!-- Hotspot Info Panel -->
+          <div class="three-hotspot-panel" id="three-hotspot-panel">
+            <button class="three-panel-close" id="three-panel-close" aria-label="Close info panel">✕</button>
+            <div class="three-panel-title" id="three-panel-title"></div>
+            <p class="three-panel-text" id="three-panel-text"></p>
+          </div>
+
+          <!-- Controls -->
+          <div class="three-controls" role="group" aria-label="3D controls">
+            <button class="three-btn" id="btn-exterior" data-translate="threeExterior">Exterior View</button>
+            <button class="three-btn" id="btn-interior" data-translate="threeInterior">Interior View</button>
+            <button class="three-btn" id="btn-aerial" data-translate="threeAerial">Aerial View</button>
+            <button class="three-btn" id="btn-reset" data-translate="threeReset">Reset View</button>
+          </div>
+
+          <!-- Hint -->
+          <div class="three-hint" aria-hidden="true">
+            <span>🖱</span>
+            <span data-translate="threeDragHint">Drag to rotate · Scroll to zoom · Click hotspots</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   THEN & NOW COMPARISON
+   ============================================================ -->
+    <section id="then-now" aria-labelledby="then-now-heading">
+      <div class="section-inner">
+        <div class="then-now-header reveal">
+          <div class="section-label" data-translate="thenNowLabel">Past &amp; Present</div>
+          <h2 class="section-title" id="then-now-heading" data-translate="thenNowTitle">Then &amp; Now</h2>
+          <p class="section-subtitle" data-translate="thenNowSubtitle">Drag the divider to compare ancient Rome with the
+            present day</p>
+        </div>
+
+        <div class="comparison-container reveal-scale" style="margin-top:2rem" id="comparison-container" role="img"
+          aria-label="Image comparison: Ancient Colosseum reconstruction vs Modern Colosseum">
+          <div class="comparison-before" id="comp-before" role="img"
+            aria-label="Ancient Colosseum reconstruction painting"></div>
+          <div class="comparison-after" id="comp-after" role="img" aria-label="Modern Colosseum photograph"></div>
+          <div class="comparison-label left" data-translate="thenLabel">Ancient Rome</div>
+          <div class="comparison-label right" data-translate="nowLabel">Present Day</div>
+          <div class="comparison-divider" id="comp-divider">
+            <div class="comparison-handle" aria-hidden="true">
+              <div class="comparison-handle-arrows">◀ ▶</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   GLADIATORS SECTION
+   ============================================================ -->
+    <section id="gladiators" aria-labelledby="gladiators-heading">
+      <div class="section-inner">
+
+        <div class="gladiators-header reveal">
+          <div class="section-label" data-translate="gladiatorsLabel">The Warriors of Rome</div>
+          <h2 class="section-title" id="gladiators-heading" data-translate="gladiatorsTitle">Gladiatorial Culture</h2>
+          <p class="section-subtitle" data-translate="gladiatorsSubtitle">History, myth, and the reality of the arena
+          </p>
+        </div>
+
+        <div class="gladiator-intro reveal">
+          <p class="section-text" style="margin: 0 auto; text-align:center; max-width:800px" data-translate="gladText">
+            Gladiators were not simply condemned criminals. Many were trained professionals — some even volunteers — who
+            lived and trained in specialised schools (ludi). They occupied a curious social position in Roman society:
+            simultaneously dishonoured and celebrated. Different types of gladiators fought with specific equipment, and
+            certain pairings — such as the Retiarius versus the Secutor — were traditional. Historical evidence suggests
+            that not all combats ended in death; the decision often rested with the organiser (editor) of the games and
+            the crowd.
+          </p>
+        </div>
+
+        <!-- Gladiator Cards -->
+        <div class="gladiators-grid">
+
+          <!-- Murmillo -->
+          <article class="gladiator-card reveal" style="transition-delay:0.1s" aria-labelledby="murmillo-name">
+            <div class="gladiator-image-wrapper">
+              <img src="assets/images/gladiator-murmillo.jpg"
+                alt="Murmillo gladiator in full armour with large shield and gladius sword" class="gladiator-image"
+                loading="lazy" width="600" height="800">
+            </div>
+            <div class="gladiator-body">
+              <h3 class="gladiator-name" id="murmillo-name">MURMILLO</h3>
+              <div class="gladiator-type" data-translate="gladHeavy">Heavy fighter</div>
+              <div class="gladiator-weapons">
+                <strong data-translate="gladEquip">Equipment</strong>
+                Large rectangular shield (scutum), short sword (gladius), visored helmet (galea) with tall crest, arm
+                guard (manica), greave on left leg.
+              </div>
+            </div>
+          </article>
+
+          <!-- Thraex -->
+          <article class="gladiator-card reveal" style="transition-delay:0.2s" aria-labelledby="thraex-name">
+            <div class="gladiator-image-wrapper">
+              <img src="assets/images/gladiator-thraex.jpg"
+                alt="Thraex gladiator wielding curved sica sword and small shield" class="gladiator-image"
+                loading="lazy" width="600" height="800">
+            </div>
+            <div class="gladiator-body">
+              <h3 class="gladiator-name" id="thraex-name">THRAEX</h3>
+              <div class="gladiator-type" data-translate="gladMedium">Medium fighter</div>
+              <div class="gladiator-weapons">
+                <strong data-translate="gladEquip">Equipment</strong>
+                Curved short sword (sica), small shield (parmula), griffin-crested visored helmet, arm guard, high leg
+                greaves. Often paired against the Murmillo.
+              </div>
+            </div>
+          </article>
+
+          <!-- Retiarius -->
+          <article class="gladiator-card reveal" style="transition-delay:0.3s" aria-labelledby="retiarius-name">
+            <div class="gladiator-image-wrapper">
+              <div class="gladiator-art g-art-3" role="img" aria-label="Retiarius gladiator artwork">
+                <span aria-hidden="true">🔱</span>
+              </div>
+            </div>
+            <div class="gladiator-body">
+              <h3 class="gladiator-name" id="retiarius-name">RETIARIUS</h3>
+              <div class="gladiator-type" data-translate="gladLight">Light fighter</div>
+              <div class="gladiator-weapons">
+                <strong data-translate="gladEquip">Equipment</strong>
+                Large weighted net (rete), trident (tridens), dagger (pugio), shoulder guard (galerus). Minimal armour —
+                no helmet — relying on agility and range. Traditionally paired vs. Secutor.
+              </div>
+            </div>
+          </article>
+
+          <!-- Secutor -->
+          <article class="gladiator-card reveal" style="transition-delay:0.4s" aria-labelledby="secutor-name">
+            <div class="gladiator-image-wrapper">
+              <div class="gladiator-art g-art-4" role="img" aria-label="Secutor gladiator artwork">
+                <span aria-hidden="true">🛡️</span>
+              </div>
+            </div>
+            <div class="gladiator-body">
+              <h3 class="gladiator-name" id="secutor-name">SECUTOR</h3>
+              <div class="gladiator-type" data-translate="gladHeavy">Heavy fighter</div>
+              <div class="gladiator-weapons">
+                <strong data-translate="gladEquip">Equipment</strong>
+                Large oval shield (scutum), gladius, smooth rounded helmet with small eye openings — designed to resist
+                entanglement in a net. Arm guard, greave. Paired vs. Retiarius.
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   LIFE INSIDE SECTION
+   ============================================================ -->
+    <section id="life-inside" aria-labelledby="life-heading">
+      <div class="section-inner">
+        <div class="life-header reveal">
+          <div class="section-label" data-translate="lifeLabel">The Experience</div>
+          <h2 class="section-title" id="life-heading" data-translate="lifeTitle">A Day at the Colosseum</h2>
+          <p class="section-subtitle" data-translate="lifeSubtitle">What attending a spectacle in ancient Rome may have
+            been like</p>
+        </div>
+
+        <div class="life-steps">
+
+          <div class="life-step reveal">
+            <div class="life-step-content">
+              <div class="life-step-number">01</div>
+              <div class="life-step-label" data-translate="life1Label">The Arrival</div>
+              <h3 class="life-step-title" data-translate="life1Title">Enter Through Your Arch</h3>
+              <p class="life-step-text" data-translate="life1Text">Spectators received numbered tesserae (tokens)
+                indicating which of the 80 arched entrances to use. Each entrance led to specific staircases and seating
+                sections. The system allowed tens of thousands to find their seats with remarkable efficiency — an
+                achievement that modern stadium designers still study.</p>
+            </div>
+            <div class="life-step-center">
+              <div class="life-step-dot"></div>
+              <span class="life-step-arrow" aria-hidden="true">↓</span>
+            </div>
+            <div class="life-step-visual">
+              <div class="life-step-visual-box lv-1" role="img" aria-label="Illustration: Colosseum entrance arches">
+                <span aria-hidden="true">🚪</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="life-step reveal">
+            <div class="life-step-visual">
+              <div class="life-step-visual-box lv-2" role="img" aria-label="Illustration: Spectators finding seats">
+                <span aria-hidden="true">👑</span>
+              </div>
+            </div>
+            <div class="life-step-center">
+              <div class="life-step-dot"></div>
+              <span class="life-step-arrow" aria-hidden="true">↓</span>
+            </div>
+            <div class="life-step-content">
+              <div class="life-step-number">02</div>
+              <div class="life-step-label" data-translate="life2Label">Social Hierarchy</div>
+              <h3 class="life-step-title" data-translate="life2Title">Take Your Place in Society</h3>
+              <p class="life-step-text" data-translate="life2Text">Where you sat reflected your social status. The
+                lowest tier (podium) was reserved for senators, magistrates, and Vestal Virgins — closest to the action.
+                Higher tiers seated equestrians, ordinary citizens, and foreigners. The uppermost wooden gallery was for
+                women and the poorest citizens. The emperor occupied the imperial box (pulvinar).</p>
+            </div>
+          </div>
+
+          <div class="life-step reveal">
+            <div class="life-step-content">
+              <div class="life-step-number">03</div>
+              <div class="life-step-label" data-translate="life3Label">The Atmosphere</div>
+              <h3 class="life-step-title" data-translate="life3Title">The Crowd Gathers</h3>
+              <p class="life-step-text" data-translate="life3Text">The atmosphere was described by ancient writers as
+                intoxicating. Vendors sold food, drink, and programmes (libelli munerarii) listing the day's events. The
+                roar of the crowd — the vox populi — was itself a form of political expression. Emperors who provided
+                spectacular games gained public favour; those who did not risked popular discontent.</p>
+            </div>
+            <div class="life-step-center">
+              <div class="life-step-dot"></div>
+              <span class="life-step-arrow" aria-hidden="true">↓</span>
+            </div>
+            <div class="life-step-visual">
+              <div class="life-step-visual-box lv-3" role="img" aria-label="Illustration: Crowd at the Colosseum">
+                <span aria-hidden="true">🎭</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="life-step reveal">
+            <div class="life-step-visual">
+              <div class="life-step-visual-box lv-4" role="img" aria-label="Illustration: Arena floor opening">
+                <span aria-hidden="true">⚙️</span>
+              </div>
+            </div>
+            <div class="life-step-center">
+              <div class="life-step-dot"></div>
+              <span class="life-step-arrow" aria-hidden="true">↓</span>
+            </div>
+            <div class="life-step-content">
+              <div class="life-step-number">04</div>
+              <div class="life-step-label" data-translate="life4Label">The Mechanisms</div>
+              <h3 class="life-step-title" data-translate="life4Title">The Arena Opens</h3>
+              <p class="life-step-text" data-translate="life4Text">Beneath the arena floor, the hypogeum hummed with
+                activity. Animals in cages were positioned on lifts. Scenery — trees, rocks, painted backdrops — was
+                assembled. At the appointed moment, trapdoors in the arena floor burst open and creatures, combatants,
+                or elaborate stage sets emerged — a theatrical spectacle as much as a competitive one.</p>
+            </div>
+          </div>
+
+          <div class="life-step reveal">
+            <div class="life-step-content">
+              <div class="life-step-number">05</div>
+              <div class="life-step-label" data-translate="life5Label">The Spectacle</div>
+              <h3 class="life-step-title" data-translate="life5Title">The Games Begin</h3>
+              <p class="life-step-text" data-translate="life5Text">A full day of games typically began with animal hunts
+                (venationes), followed by executions (noxii), and culminating in gladiatorial combats in the afternoon.
+                The outcome of bouts was not always predetermined, and the crowd's reaction — thumbs gestures, waving of
+                togas — could influence the fate of defeated combatants.</p>
+            </div>
+            <div class="life-step-center">
+              <div class="life-step-dot"></div>
+            </div>
+            <div class="life-step-visual">
+              <div class="life-step-visual-box lv-5" role="img"
+                aria-label="Illustration: Gladiatorial spectacle in the arena">
+                <span aria-hidden="true">⚔️</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   HYPOGEUM SECTION
+   ============================================================ -->
+    <section id="hypogeum" aria-labelledby="hypogeum-heading">
+      <div class="section-inner">
+        <div class="hypogeum-header reveal">
+          <div class="section-label" data-translate="hypoLabel">Underground Secrets</div>
+          <h2 class="section-title" id="hypogeum-heading" data-translate="hypoTitle">The Hypogeum</h2>
+          <p class="section-subtitle" data-translate="hypoSubtitle">The hidden machinery beneath the arena floor</p>
+        </div>
+
+        <div class="hypogeum-toggle" role="group" aria-label="View selector">
+          <button class="hypo-toggle-btn active" id="btn-arena-view" data-view="arena" data-translate="arenaView">Arena
+            View</button>
+          <button class="hypo-toggle-btn" id="btn-hypo-view" data-view="underground"
+            data-translate="undergroundView">Underground View</button>
+        </div>
+
+        <!-- Arena View -->
+        <div class="hypogeum-view active" id="hypo-arena-view">
+          <div class="hypo-diagram reveal-left">
+            <svg class="hypo-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Arena floor view diagram">
+              <rect width="400" height="300" fill="#1e1a15" />
+              <!-- Arena oval -->
+              <ellipse cx="200" cy="150" rx="170" ry="130" fill="#2a1e10" stroke="#c4962a" stroke-width="1" />
+              <!-- Sand floor -->
+              <ellipse cx="200" cy="150" rx="140" ry="105" fill="#5a4030" stroke="#c4962a" stroke-width="0.5"
+                opacity="0.6" />
+              <!-- Trapdoors -->
+              <g fill="#3a2a1a" stroke="#c4962a" stroke-width="0.5" opacity="0.8">
+                <rect x="165" y="115" width="30" height="20" rx="1" />
+                <rect x="205" y="115" width="30" height="20" rx="1" />
+                <rect x="165" y="160" width="30" height="20" rx="1" />
+                <rect x="205" y="160" width="30" height="20" rx="1" />
+                <rect x="130" y="140" width="25" height="18" rx="1" />
+                <rect x="245" y="140" width="25" height="18" rx="1" />
+              </g>
+              <!-- Pompa gate -->
+              <rect x="178" y="55" width="44" height="16" fill="#3a2a1a" stroke="#c4962a" stroke-width="1.5" />
+              <text x="200" y="66" text-anchor="middle" fill="#c4962a" font-size="6" font-family="Cinzel,serif"
+                letter-spacing="1">PORTA POMPA</text>
+              <!-- Dead gate -->
+              <rect x="178" y="229" width="44" height="16" fill="#3a2a1a" stroke="#8b2420" stroke-width="1" />
+              <text x="200" y="240" text-anchor="middle" fill="#8b2420" font-size="6" font-family="Cinzel,serif"
+                letter-spacing="1">PORTA LIBITINARIA</text>
+              <!-- Imperial box -->
+              <rect x="178" y="2" width="44" height="14" fill="rgba(196,150,42,0.25)" stroke="#c4962a"
+                stroke-width="1" />
+              <text x="200" y="12" text-anchor="middle" fill="#c4962a" font-size="6" font-family="Cinzel,serif"
+                letter-spacing="1">PULVINAR</text>
+              <!-- Center label -->
+              <text x="200" y="148" text-anchor="middle" fill="#8a6820" font-size="9" font-family="Cinzel,serif"
+                letter-spacing="3" opacity="0.6">ARENA</text>
+              <text x="200" y="162" text-anchor="middle" fill="#8a6820" font-size="7" font-family="Cinzel,serif"
+                opacity="0.4">~83m × 48m</text>
+              <!-- Trapdoor arrows -->
+              <g stroke="#c4962a" stroke-width="0.5" opacity="0.5">
+                <line x1="180" y1="125" x2="180" y2="105" marker-end="url(#arrow)" />
+                <line x1="220" y1="125" x2="220" y2="105" marker-end="url(#arrow)" />
+                <line x1="180" y1="160" x2="180" y2="180" marker-end="url(#arrow)" />
+                <line x1="220" y1="160" x2="220" y2="180" marker-end="url(#arrow)" />
+              </g>
+              <defs>
+                <marker id="arrow" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
+                  <path d="M0,0 L4,2 L0,4 Z" fill="#c4962a" opacity="0.5" />
+                </marker>
+              </defs>
+            </svg>
+          </div>
+
+          <div class="hypo-content-info reveal-right">
+            <div class="section-label" data-translate="arenaViewLabel">From Above</div>
+            <h3 class="section-title" style="font-size:1.8rem;margin-bottom:1rem" data-translate="arenaViewTitle">The
+              Arena Floor</h3>
+            <p class="section-text" style="margin-bottom:2rem" data-translate="arenaViewText">The oval arena floor
+              measured approximately 83m × 48m. Originally covered in wooden boards topped with sand (the Latin word
+              harena, or arena, means sand), the floor concealed the elaborate mechanical world below. Two main gates
+              controlled the flow of spectacle: the Porta Pompae for triumphant entries and the Porta Libitinaria for
+              the defeated or fallen.</p>
+            <div class="hypo-features">
+              <div class="hypo-feature">
+                <div class="hypo-feature-icon" aria-hidden="true">🚪</div>
+                <div>
+                  <div class="hypo-feature-title" data-translate="portaPompa">Porta Pompae</div>
+                  <p class="hypo-feature-text" data-translate="portaPompaText">The Gate of Procession — through which
+                    gladiators and performers entered the arena in ceremonial procession at the start of games.</p>
+                </div>
+              </div>
+              <div class="hypo-feature">
+                <div class="hypo-feature-icon" aria-hidden="true">⚰️</div>
+                <div>
+                  <div class="hypo-feature-title" data-translate="portaLib">Porta Libitinaria</div>
+                  <p class="hypo-feature-text" data-translate="portaLibText">Named for Libitina, goddess of funerals —
+                    this gate was used to remove the fallen from the arena. Ancient sources suggest workers would dress
+                    as Charon (the ferryman of the dead) to collect the bodies.</p>
+                </div>
+              </div>
+              <div class="hypo-feature">
+                <div class="hypo-feature-icon" aria-hidden="true">☀️</div>
+                <div>
+                  <div class="hypo-feature-title" data-translate="trapDoors">Trapdoors</div>
+                  <p class="hypo-feature-text" data-translate="trapDoorsText">At least 28 trapdoors in the floor
+                    connected to the lifts of the hypogeum below, enabling dramatic sudden appearances of animals,
+                    scenery, and combatants.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Underground View -->
+        <div class="hypogeum-view" id="hypo-underground-view">
+          <div class="hypo-diagram reveal-left">
+            <svg class="hypo-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Hypogeum underground layout diagram">
+              <rect width="400" height="300" fill="#0f0c09" />
+              <!-- Grid of corridors -->
+              <g stroke="#3d3428" stroke-width="1" fill="none">
+                <!-- Horizontal corridors -->
+                <line x1="30" y1="60" x2="370" y2="60" />
+                <line x1="30" y1="100" x2="370" y2="100" />
+                <line x1="30" y1="140" x2="370" y2="140" />
+                <line x1="30" y1="180" x2="370" y2="180" />
+                <line x1="30" y1="220" x2="370" y2="220" />
+                <line x1="30" y1="260" x2="370" y2="260" />
+                <!-- Vertical corridors -->
+                <line x1="60" y1="30" x2="60" y2="280" />
+                <line x1="120" y1="30" x2="120" y2="280" />
+                <line x1="180" y1="30" x2="180" y2="280" />
+                <line x1="240" y1="30" x2="240" y2="280" />
+                <line x1="300" y1="30" x2="300" y2="280" />
+                <line x1="360" y1="30" x2="360" y2="280" />
+              </g>
+              <!-- Lift shafts -->
+              <g fill="#2a1a0a" stroke="#c4962a" stroke-width="1">
+                <rect x="70" y="70" width="40" height="25" rx="1" />
+                <rect x="130" y="70" width="40" height="25" rx="1" />
+                <rect x="190" y="70" width="40" height="25" rx="1" />
+                <rect x="250" y="70" width="40" height="25" rx="1" />
+                <rect x="310" y="70" width="40" height="25" rx="1" />
+                <rect x="70" y="110" width="40" height="25" rx="1" />
+                <rect x="130" y="110" width="40" height="25" rx="1" />
+                <rect x="190" y="110" width="40" height="25" rx="1" />
+                <rect x="250" y="110" width="40" height="25" rx="1" />
+                <rect x="310" y="110" width="40" height="25" rx="1" />
+                <rect x="70" y="150" width="40" height="25" rx="1" />
+                <rect x="130" y="150" width="40" height="25" rx="1" />
+                <rect x="190" y="150" width="40" height="25" rx="1" />
+                <rect x="250" y="150" width="40" height="25" rx="1" />
+                <rect x="310" y="150" width="40" height="25" rx="1" />
+              </g>
+              <!-- Lift arrows -->
+              <g stroke="#c4962a" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6">
+                <line x1="90" y1="82" x2="90" y2="60" marker-end="url(#arrow2)" />
+                <line x1="210" y1="82" x2="210" y2="60" marker-end="url(#arrow2)" />
+                <line x1="330" y1="82" x2="330" y2="60" marker-end="url(#arrow2)" />
+                <line x1="150" y1="122" x2="150" y2="100" marker-end="url(#arrow2)" />
+                <line x1="270" y1="122" x2="270" y2="100" marker-end="url(#arrow2)" />
+              </g>
+              <defs>
+                <marker id="arrow2" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
+                  <path d="M0,0 L4,2 L0,4 Z" fill="#c4962a" opacity="0.6" />
+                </marker>
+              </defs>
+              <!-- Torch lighting -->
+              <circle cx="60" cy="60" r="4" fill="#c4962a" opacity="0.3" />
+              <circle cx="120" cy="60" r="4" fill="#c4962a" opacity="0.3" />
+              <circle cx="180" cy="60" r="4" fill="#c4962a" opacity="0.3" />
+              <circle cx="240" cy="60" r="4" fill="#c4962a" opacity="0.3" />
+              <!-- Labels -->
+              <text x="90" y="88" text-anchor="middle" fill="#c4962a" font-size="5.5" font-family="Cinzel,serif"
+                letter-spacing="0.5">LIFT</text>
+              <text x="200" y="285" text-anchor="middle" fill="#8a6820" font-size="8" font-family="Cinzel,serif"
+                letter-spacing="3" opacity="0.8">HYPOGEUM — LEVEL 1</text>
+              <text x="200" y="20" text-anchor="middle" fill="#8a6820" font-size="8" font-family="Cinzel,serif"
+                letter-spacing="3" opacity="0.6">ARENA FLOOR ↑</text>
+              <!-- Animal cages indicator -->
+              <rect x="70" y="190" width="40" height="25" rx="1" fill="#1a0a0a" stroke="#8b2420" stroke-width="1" />
+              <text x="90" y="206" text-anchor="middle" fill="#8b2420" font-size="5.5"
+                font-family="Cinzel,serif">CAGE</text>
+              <rect x="290" y="190" width="40" height="25" rx="1" fill="#1a0a0a" stroke="#8b2420" stroke-width="1" />
+              <text x="310" y="206" text-anchor="middle" fill="#8b2420" font-size="5.5"
+                font-family="Cinzel,serif">CAGE</text>
+            </svg>
+          </div>
+
+          <div class="hypo-content-info reveal-right">
+            <div class="section-label" data-translate="undergroundLabel">Beneath the Arena</div>
+            <h3 class="section-title" style="font-size:1.8rem;margin-bottom:1rem" data-translate="undergroundTitle">The
+              Underground Network</h3>
+            <p class="section-text" style="margin-bottom:2rem" data-translate="undergroundText">The hypogeum — added
+              under Emperor Domitian — was a two-level underground structure covering the entire area beneath the arena
+              floor. Two central corridors and twelve side passages created a labyrinthine network. Mechanical lifts (at
+              least 28), operated by teams of workers using counterweights and capstans, could raise animals and
+              platforms through trapdoors directly into the arena.</p>
+            <div class="hypo-features">
+              <div class="hypo-feature">
+                <div class="hypo-feature-icon" aria-hidden="true">🔄</div>
+                <div>
+                  <div class="hypo-feature-title" data-translate="liftsTitle">Mechanical Lifts</div>
+                  <p class="hypo-feature-text" data-translate="liftsText">At least 28 lift shafts, operated by
+                    counterweights and capstans, could raise platforms of animals, scenery, or performers up to 7 metres
+                    into the arena in seconds.</p>
+                </div>
+              </div>
+              <div class="hypo-feature">
+                <div class="hypo-feature-icon" aria-hidden="true">🦁</div>
+                <div>
+                  <div class="hypo-feature-title" data-translate="cagesTitle">Animal Holding</div>
+                  <p class="hypo-feature-text" data-translate="cagesText">Corridors included cages and pens for exotic
+                    animals — lions, tigers, bears, crocodiles, elephants — brought from across the Roman Empire for the
+                    venationes (animal hunts).</p>
+                </div>
+              </div>
+              <div class="hypo-feature">
+                <div class="hypo-feature-icon" aria-hidden="true">🎭</div>
+                <div>
+                  <div class="hypo-feature-title" data-translate="sceneryTitle">Staging &amp; Scenery</div>
+                  <p class="hypo-feature-text" data-translate="sceneryText">Entire landscape scenes — including
+                    artificial forests, rock formations, and painted backdrops — could be assembled underground and
+                    raised into the arena, creating theatrical spectacles rivalling any modern stage production.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   GALLERY SECTION
+   ============================================================ -->
+    <section id="gallery" aria-labelledby="gallery-heading">
+      <div class="section-inner">
+        <div class="gallery-header reveal">
+          <div class="section-label" data-translate="galleryLabel">Visual Archive</div>
+          <h2 class="section-title" id="gallery-heading" data-translate="galleryTitle">Gallery</h2>
+          <p class="section-subtitle" data-translate="gallerySubtitle">Exterior · Interior · Architecture · Night ·
+            History · Details</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="gallery-filters" role="group" aria-label="Gallery filters">
+          <button class="gallery-filter-btn active" data-filter="all" data-translate="filterAll">All</button>
+          <button class="gallery-filter-btn" data-filter="exterior" data-translate="filterExterior">Exterior</button>
+          <button class="gallery-filter-btn" data-filter="interior" data-translate="filterInterior">Interior</button>
+          <button class="gallery-filter-btn" data-filter="architecture"
+            data-translate="filterArch">Architecture</button>
+          <button class="gallery-filter-btn" data-filter="history" data-translate="filterHistory">History</button>
+          <button class="gallery-filter-btn" data-filter="night" data-translate="filterNight">Night</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="gallery-grid">
+
+          <div class="gallery-item span-2 row-span-2" data-filter="exterior"
+            data-caption="The Colosseum at Sunset · Rome" tabindex="0" role="button"
+            aria-label="View: The Colosseum at Sunset">
+            <div class="gallery-item-bg gb-hero"></div>
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-caption" data-translate="gal1">The Colosseum at Sunset</span>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-filter="architecture"
+            data-caption="Exterior Arches · Three Tiers of Travertine" tabindex="0" role="button"
+            aria-label="View: Exterior Arches">
+            <div class="gallery-item-bg gb-arch"></div>
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-caption" data-translate="gal2">Exterior Arches</span>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-filter="exterior" data-caption="Modern View · Present Day" tabindex="0"
+            role="button" aria-label="View: Modern Colosseum">
+            <div class="gallery-item-bg gb-now"></div>
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-caption" data-translate="gal3">The Colosseum Today</span>
+            </div>
+          </div>
+
+          <div class="gallery-item span-2" data-filter="history"
+            data-caption="Ancient Glory · Historical Reconstruction Painting" tabindex="0" role="button"
+            aria-label="View: Ancient Colosseum reconstruction">
+            <div class="gallery-item-bg gb-ancient"></div>
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-caption" data-translate="gal4">Ancient Glory — Historical Reconstruction</span>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-filter="night" data-caption="Night Illumination · The Colosseum After Dark"
+            tabindex="0" role="button" aria-label="View: Colosseum at night">
+            <div class="gallery-item-bg gb-1"
+              style="display:flex;align-items:center;justify-content:center;font-size:3rem" role="img"
+              aria-label="Night view placeholder">🌙</div>
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-caption" data-translate="gal5">Night Illumination</span>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-filter="interior" data-caption="The Hypogeum · Underground Passages"
+            tabindex="0" role="button" aria-label="View: Hypogeum underground passages">
+            <div class="gallery-item-bg gb-2"
+              style="display:flex;align-items:center;justify-content:center;font-size:3rem">🏚️</div>
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-caption" data-translate="gal6">The Hypogeum</span>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-filter="architecture" data-caption="Roman Arches · Detail Study" tabindex="0"
+            role="button" aria-label="View: Roman arch detail">
+            <div class="gallery-item-bg gb-3"
+              style="display:flex;align-items:center;justify-content:center;font-size:3rem">🏛️</div>
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-caption" data-translate="gal7">Arch Detail</span>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-filter="interior" data-caption="The Cavea · Seating Tiers from the Arena"
+            tabindex="0" role="button" aria-label="View: Seating tiers">
+            <div class="gallery-item-bg gb-4"
+              style="display:flex;align-items:center;justify-content:center;font-size:3rem">🎭</div>
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-caption" data-translate="gal8">The Cavea — Seating Tiers</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox"
+        aria-hidden="true">
+        <div class="lightbox-inner">
+          <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">✕</button>
+          <img class="lightbox-img" id="lightbox-img" src="" alt="">
+          <div class="lightbox-caption" id="lightbox-caption"></div>
+          <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">◀</button>
+          <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   ROME MAP SECTION
+   ============================================================ -->
+    <section id="rome-map" aria-labelledby="rome-heading">
+      <div class="section-inner">
+        <div class="rome-header reveal">
+          <div class="section-label" data-translate="romeLabel">Eternal City</div>
+          <h2 class="section-title" id="rome-heading" data-translate="romeTitle">The Colosseum in the Heart of Rome</h2>
+          <p class="section-subtitle" data-translate="romeSubtitle">Surrounded by millennia of history</p>
+        </div>
+
+        <div class="rome-grid">
+          <div class="rome-info reveal-left">
+            <p class="section-text" style="margin-bottom:2rem" data-translate="romeText">
+              The Colosseum stands at the heart of Rome's archaeological zone, surrounded by some of the most
+              significant monuments of the ancient world. The Roman Forum lies immediately to the north-west, the
+              Palatine Hill to the south, and the Arch of Constantine — the largest surviving Roman triumphal arch —
+              stands just outside its south-east wall.
+            </p>
+
+            <div class="landmarks-list" role="list">
+              <div class="landmark-item" role="listitem">
+                <span class="landmark-icon" aria-hidden="true">🏛️</span>
+                <span class="landmark-name" data-translate="lm1">Roman Forum (Foro Romano)</span>
+                <span class="landmark-distance">~5 min walk</span>
+              </div>
+              <div class="landmark-item" role="listitem">
+                <span class="landmark-icon" aria-hidden="true">⛰️</span>
+                <span class="landmark-name" data-translate="lm2">Palatine Hill (Colle Palatino)</span>
+                <span class="landmark-distance">~8 min walk</span>
+              </div>
+              <div class="landmark-item" role="listitem">
+                <span class="landmark-icon" aria-hidden="true">🏟️</span>
+                <span class="landmark-name" data-translate="lm3">Arch of Constantine</span>
+                <span class="landmark-distance">~2 min walk</span>
+              </div>
+              <div class="landmark-item" role="listitem">
+                <span class="landmark-icon" aria-hidden="true">🕍</span>
+                <span class="landmark-name" data-translate="lm4">Circo Massimo (Circus Maximus)</span>
+                <span class="landmark-distance">~15 min walk</span>
+              </div>
+              <div class="landmark-item" role="listitem">
+                <span class="landmark-icon" aria-hidden="true">⛲</span>
+                <span class="landmark-name" data-translate="lm5">Trevi Fountain (Fontana di Trevi)</span>
+                <span class="landmark-distance">~30 min walk</span>
+              </div>
+              <div class="landmark-item" role="listitem">
+                <span class="landmark-icon" aria-hidden="true">🔵</span>
+                <span class="landmark-name" data-translate="lm6">Pantheon</span>
+                <span class="landmark-distance">~35 min walk</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Illustrated Map -->
+          <div class="rome-map-visual reveal-right">
+            <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Illustrated map of Rome showing the Colosseum and nearby landmarks">
+              <!-- Map background -->
+              <rect width="500" height="400" fill="#1a1510" />
+              <!-- Street grid -->
+              <g stroke="#2d2620" stroke-width="1" fill="none" opacity="0.6">
+                <!-- Major roads radiating from Colosseum -->
+                <path d="M250 200 L380 80" />
+                <path d="M250 200 L420 200" />
+                <path d="M250 200 L380 320" />
+                <path d="M250 200 L120 320" />
+                <path d="M250 200 L80 200" />
+                <path d="M250 200 L120 80" />
+                <path d="M250 200 L250 60" />
+                <path d="M250 200 L250 360" />
+              </g>
+              <!-- Street blocks -->
+              <g stroke="#2d2620" stroke-width="0.5" fill="none" opacity="0.3">
+                <rect x="100" y="100" width="60" height="40" />
+                <rect x="340" y="100" width="60" height="40" />
+                <rect x="100" y="260" width="60" height="40" />
+                <rect x="340" y="260" width="60" height="40" />
+                <rect x="170" y="60" width="60" height="30" />
+                <rect x="270" y="60" width="60" height="30" />
+                <rect x="340" y="160" width="40" height="50" />
+                <rect x="120" y="160" width="40" height="50" />
+              </g>
+
+              <!-- Tiber River -->
+              <path d="M30 50 Q60 100 40 150 Q20 200 50 250 Q80 300 60 360" stroke="#2a4060" stroke-width="8"
+                fill="none" opacity="0.6" />
+              <path d="M30 50 Q60 100 40 150 Q20 200 50 250 Q80 300 60 360" stroke="#3a5070" stroke-width="4"
+                fill="none" opacity="0.4" />
+              <text x="38" y="200" fill="#3a5070" font-size="7" font-family="Inter,sans-serif"
+                transform="rotate(-20 38 200)" opacity="0.8">Tevere</text>
+
+              <!-- Colosseum — Main -->
+              <ellipse cx="250" cy="200" rx="28" ry="22" fill="rgba(196,150,42,0.15)" stroke="#c4962a"
+                stroke-width="2.5" />
+              <ellipse cx="250" cy="200" rx="18" ry="14" fill="rgba(196,150,42,0.08)" stroke="#c4962a"
+                stroke-width="1" />
+              <circle cx="250" cy="200" r="4" fill="#c4962a" />
+              <text x="250" y="236" text-anchor="middle" fill="#c4962a" font-size="9" font-family="Cinzel,serif"
+                font-weight="700" letter-spacing="1">COLOSSEUM</text>
+
+              <!-- Roman Forum -->
+              <rect x="170" y="168" width="55" height="22" rx="2" fill="rgba(196,150,42,0.08)" stroke="#8a6820"
+                stroke-width="1" />
+              <text x="197" y="183" text-anchor="middle" fill="#8a6820" font-size="6.5" font-family="Cinzel,serif">ROMAN
+                FORUM</text>
+
+              <!-- Arch of Constantine -->
+              <circle cx="270" cy="225" r="6" fill="rgba(139,96,64,0.3)" stroke="#8b6040" stroke-width="1.5" />
+              <text x="285" y="228" fill="#8b6040" font-size="6" font-family="Cinzel,serif">Arch of Constantine</text>
+
+              <!-- Palatine Hill -->
+              <path d="M200 230 Q220 255 260 250 Q280 265 270 290 Q240 310 210 295 Q185 275 200 230"
+                fill="rgba(61,52,40,0.4)" stroke="#5a4030" stroke-width="1" />
+              <text x="232" y="270" text-anchor="middle" fill="#5a4030" font-size="7" font-family="Cinzel,serif"
+                font-style="italic">Palatine</text>
+
+              <!-- Circus Maximus -->
+              <ellipse cx="195" cy="315" rx="45" ry="18" fill="rgba(50,40,25,0.4)" stroke="#5a4030"
+                stroke-width="0.8" />
+              <text x="195" y="318" text-anchor="middle" fill="#5a4030" font-size="6" font-family="Cinzel,serif">Circo
+                Massimo</text>
+
+              <!-- Pantheon (far NW) -->
+              <circle cx="120" cy="100" r="9" fill="rgba(196,150,42,0.06)" stroke="#6a5018" stroke-width="1" />
+              <text x="120" y="87" text-anchor="middle" fill="#6a5018" font-size="6.5"
+                font-family="Cinzel,serif">Pantheon</text>
+
+              <!-- Piazza Venezia -->
+              <rect x="170" y="100" width="30" height="18" rx="1" fill="rgba(196,150,42,0.05)" stroke="#6a5018"
+                stroke-width="0.8" />
+              <text x="185" y="112" text-anchor="middle" fill="#6a5018" font-size="5.5" font-family="Cinzel,serif">P.
+                Venezia</text>
+
+              <!-- Scale and compass -->
+              <g transform="translate(400,340)">
+                <line x1="0" y1="0" x2="50" y2="0" stroke="#c4962a" stroke-width="1" opacity="0.5" />
+                <line x1="0" y1="-4" x2="0" y2="4" stroke="#c4962a" stroke-width="1" opacity="0.5" />
+                <line x1="50" y1="-4" x2="50" y2="4" stroke="#c4962a" stroke-width="1" opacity="0.5" />
+                <text x="25" y="-8" text-anchor="middle" fill="#c4962a" font-size="6" font-family="Cinzel,serif"
+                  opacity="0.6">1 km</text>
+              </g>
+              <!-- North indicator -->
+              <g transform="translate(460,50)">
+                <circle r="15" fill="rgba(196,150,42,0.05)" stroke="#c4962a" stroke-width="0.5" opacity="0.5" />
+                <text x="0" y="-6" text-anchor="middle" fill="#c4962a" font-size="9" font-weight="700"
+                  font-family="Cinzel,serif" opacity="0.7">N</text>
+                <line x1="0" y1="-3" x2="0" y2="10" stroke="#c4962a" stroke-width="1.5" opacity="0.5" />
+              </g>
+
+              <!-- Grid overlay -->
+              <text x="250" y="390" text-anchor="middle" fill="#5a4030" font-size="7" font-family="Cinzel,serif"
+                letter-spacing="2" opacity="0.6">ROMA · 41°53'N 12°29'E</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   LOCATION SECTION
+   ============================================================ -->
+    <section id="location" aria-labelledby="location-heading">
+      <div class="section-inner">
+        <div class="reveal" style="text-align:center;margin-bottom:3rem">
+          <div class="section-label" data-translate="locationLabel">Visit</div>
+          <h2 class="section-title" id="location-heading" data-translate="locationTitle">Find the Colosseum</h2>
+        </div>
+
+        <div class="location-grid">
+          <div class="location-card reveal" style="transition-delay:0.1s">
+            <div class="location-card-label">
+              <span aria-hidden="true">📍</span>
+              <span data-translate="locAddress">Address</span>
+            </div>
+            <div class="location-card-content">
+              Piazza del Colosseo<br>
+              00184 Rome<br>
+              Italy
+            </div>
+          </div>
+          <div class="location-card reveal" style="transition-delay:0.2s">
+            <div class="location-card-label">
+              <span aria-hidden="true">🌐</span>
+              <span data-translate="locCoords">Coordinates</span>
+            </div>
+            <div class="location-card-content">
+              41°53'25" N<br>
+              12°29'32" E<br>
+              <small style="color:var(--text-muted);font-size:0.75rem;font-family:var(--font-body)">Elevation: ~20m
+                a.s.l.</small>
+            </div>
+          </div>
+          <div class="location-card reveal" style="transition-delay:0.3s">
+            <div class="location-card-label">
+              <span aria-hidden="true">🚇</span>
+              <span data-translate="locTransport">Getting There</span>
+            </div>
+            <div class="location-card-content" style="font-size:0.85rem;line-height:2">
+              Metro: Line B — <em>Colosseo</em><br>
+              Bus: Lines 51, 75, 85, 117<br>
+              Tram: Line 3
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:3rem" class="reveal">
+          <a href="https://www.google.com/maps/place/Colosseum" target="_blank" rel="noopener noreferrer"
+            class="btn-primary" id="explore-rome-btn">
+            <span data-translate="locCTA">Explore on Google Maps</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   FACTS SECTION
+   ============================================================ -->
+    <section id="facts" aria-labelledby="facts-heading">
+      <div class="section-inner">
+        <div class="facts-header reveal">
+          <div class="section-label" data-translate="factsLabel">Did You Know</div>
+          <h2 class="section-title" id="facts-heading" data-translate="factsTitle">Fascinating Facts</h2>
+        </div>
+
+        <div class="facts-grid">
+
+          <div class="fact-card reveal" style="transition-delay:0.1s">
+            <div class="fact-number">01</div>
+            <div class="fact-icon" aria-hidden="true">🏆</div>
+            <h3 class="fact-title" data-translate="fact1Title">One of the New Seven Wonders</h3>
+            <p class="fact-text" data-translate="fact1Text">The Colosseum was voted one of the New Seven Wonders of the
+              World in a global poll conducted in 2007, alongside structures such as the Great Wall of China, Machu
+              Picchu, and the Taj Mahal.</p>
+          </div>
+
+          <div class="fact-card reveal" style="transition-delay:0.2s">
+            <div class="fact-number">02</div>
+            <div class="fact-icon" aria-hidden="true">⚡</div>
+            <h3 class="fact-title" data-translate="fact2Title">Lightning-Fast Evacuation</h3>
+            <p class="fact-text" data-translate="fact2Text">The system of 80 numbered vomitoria (exit corridors) was so
+              efficiently designed that scholars estimate the Colosseum could be fully evacuated in approximately 15
+              minutes — a feat of engineering still admired by modern stadium designers.</p>
+          </div>
+
+          <div class="fact-card reveal" style="transition-delay:0.3s">
+            <div class="fact-number">03</div>
+            <div class="fact-icon" aria-hidden="true">🌊</div>
+            <h3 class="fact-title" data-translate="fact3Title">Ancient Water Spectacles?</h3>
+            <p class="fact-text" data-translate="fact3Text">Some ancient sources describe naumachiae — simulated sea
+              battles — being held in the flooded arena. However, modern scholars debate whether the arena was flooded
+              after the hypogeum was completed, or whether these events occurred before that construction.</p>
+          </div>
+
+          <div class="fact-card reveal" style="transition-delay:0.1s">
+            <div class="fact-number">04</div>
+            <div class="fact-icon" aria-hidden="true">🏗️</div>
+            <h3 class="fact-title" data-translate="fact4Title">Recycled Building Material</h3>
+            <p class="fact-text" data-translate="fact4Text">During the medieval period, the Colosseum was heavily
+              quarried for building materials. Significant amounts of its stone were reused in the construction of St.
+              Peter's Basilica and other Renaissance-era buildings across Rome. Scholars estimate only about two-thirds
+              of the original structure survives.</p>
+          </div>
+
+          <div class="fact-card reveal" style="transition-delay:0.2s">
+            <div class="fact-number">05</div>
+            <div class="fact-icon" aria-hidden="true">🌿</div>
+            <h3 class="fact-title" data-translate="fact5Title">A Flora All Its Own</h3>
+            <p class="fact-text" data-translate="fact5Text">Over the centuries, the Colosseum developed a remarkable
+              microecology. In the 19th century, botanists catalogued over 400 species of plants growing within and
+              around the ruins — including species potentially introduced via seeds carried in animal fodder transported
+              from distant parts of the Roman Empire.</p>
+          </div>
+
+          <div class="fact-card reveal" style="transition-delay:0.3s">
+            <div class="fact-number">06</div>
+            <div class="fact-icon" aria-hidden="true">🔴</div>
+            <h3 class="fact-title" data-translate="fact6Title">Capital Punishment Symbol</h3>
+            <p class="fact-text" data-translate="fact6Text">Since 1999, the Colosseum's exterior is lit in gold rather
+              than white whenever a jurisdiction anywhere in the world abolishes capital punishment or grants a
+              condemned prisoner a reprieve. The gesture reflects the Colosseum's transformation from a site of death
+              into a global symbol of life.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   MYTH VS FACT SECTION
+   ============================================================ -->
+    <section id="myth-fact" aria-labelledby="myth-heading">
+      <div class="section-inner">
+        <div class="myth-header reveal">
+          <div class="section-label" data-translate="mythLabel">Separating History from Legend</div>
+          <h2 class="section-title" id="myth-heading" data-translate="mythTitle">Myth vs. Historical Reality</h2>
+          <p class="section-subtitle" data-translate="mythSubtitle">Click each card to reveal the historical truth</p>
+        </div>
+
+        <div class="myth-grid">
+
+          <div class="myth-card" role="button" tabindex="0" aria-label="Myth vs fact card 1 — click to flip"
+            onclick="flipCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')flipCard(this)">
+            <div class="myth-card-inner">
+              <div class="myth-front">
+                <div class="myth-tag myth" data-translate="mythTag">Myth</div>
+                <p class="myth-text" data-translate="myth1">"Every gladiatorial combat ended in the death of the loser."
+                </p>
+                <div class="myth-flip-hint"><span>↩</span> <span data-translate="flipHint">Click to reveal the
+                    reality</span></div>
+              </div>
+              <div class="myth-back">
+                <div class="myth-tag fact" data-translate="factTag">Historical Reality</div>
+                <p class="myth-text" data-translate="fact1m">"Many combats ended without a fatality."</p>
+                <p class="myth-fact-text" data-translate="fact1detail">Gladiators were expensive to train. Killing them
+                  was costly. Ancient evidence suggests many fights ended when one combatant was incapacitated, with the
+                  decision to spare or kill resting with the editor (the sponsor of the games) and the crowd. The thumbs
+                  gesture (pollice verso) is debated; its exact meaning remains uncertain.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="myth-card" role="button" tabindex="0" aria-label="Myth vs fact card 2 — click to flip"
+            onclick="flipCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')flipCard(this)">
+            <div class="myth-card-inner">
+              <div class="myth-front">
+                <div class="myth-tag myth" data-translate="mythTag">Myth</div>
+                <p class="myth-text" data-translate="myth2">"The ancient Romans always called it 'the Colosseum.'"</p>
+                <div class="myth-flip-hint"><span>↩</span> <span data-translate="flipHint">Click to reveal the
+                    reality</span></div>
+              </div>
+              <div class="myth-back">
+                <div class="myth-tag fact" data-translate="factTag">Historical Reality</div>
+                <p class="myth-text" data-translate="fact2m">"Its ancient name was the Flavian Amphitheatre."</p>
+                <p class="myth-fact-text" data-translate="fact2detail">Romans called it the Amphitheatrum Flavium
+                  (Flavian Amphitheatre), after the Flavian dynasty that built it. The name 'Colosseum' derives from the
+                  medieval Latin 'Colosseum' or 'Coliseum,' likely referencing a colossal statue of Nero that stood
+                  nearby — the Colossus of Nero.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="myth-card" role="button" tabindex="0" aria-label="Myth vs fact card 3 — click to flip"
+            onclick="flipCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')flipCard(this)">
+            <div class="myth-card-inner">
+              <div class="myth-front">
+                <div class="myth-tag myth" data-translate="mythTag">Myth</div>
+                <p class="myth-text" data-translate="myth3">"Large numbers of Christians were martyred specifically in
+                  the Colosseum."</p>
+                <div class="myth-flip-hint"><span>↩</span> <span data-translate="flipHint">Click to reveal the
+                    reality</span></div>
+              </div>
+              <div class="myth-back">
+                <div class="myth-tag fact" data-translate="factTag">Historical Reality</div>
+                <p class="myth-text" data-translate="fact3m">"The historical evidence is debated and uncertain."</p>
+                <p class="myth-fact-text" data-translate="fact3detail">While Christians were certainly persecuted in
+                  ancient Rome, direct ancient evidence for mass Christian martyrdom specifically within the Colosseum
+                  is limited and contested among modern historians and archaeologists. The association grew strongly in
+                  the medieval period. The site was nonetheless consecrated in their memory in the 18th century.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="myth-card" role="button" tabindex="0" aria-label="Myth vs fact card 4 — click to flip"
+            onclick="flipCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')flipCard(this)">
+            <div class="myth-card-inner">
+              <div class="myth-front">
+                <div class="myth-tag myth" data-translate="mythTag">Myth</div>
+                <p class="myth-text" data-translate="myth4">"Gladiators were slaves who were forced to fight against
+                  their will."</p>
+                <div class="myth-flip-hint"><span>↩</span> <span data-translate="flipHint">Click to reveal the
+                    reality</span></div>
+              </div>
+              <div class="myth-back">
+                <div class="myth-tag fact" data-translate="factTag">Historical Reality</div>
+                <p class="myth-text" data-translate="fact4m">"Many gladiators were volunteers seeking fame and fortune."
+                </p>
+                <p class="myth-fact-text" data-translate="fact4detail">While some gladiators were slaves or prisoners of
+                  war, a significant number were free volunteers (auctorati) who signed contracts with gladiatorial
+                  schools (ludi) for pay, food, lodging, and medical care. Successful gladiators became celebrities,
+                  with their own fan followings and commercial endorsements — not unlike modern athletes.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   ARCHITECTURAL DETAILS
+   ============================================================ -->
+    <section id="arch-details" aria-labelledby="arch-details-heading">
+      <div class="section-inner">
+        <div class="arch-details-header reveal">
+          <div class="section-label" data-translate="detailsLabel">Stone by Stone</div>
+          <h2 class="section-title" id="arch-details-heading" data-translate="detailsTitle">Architectural Details</h2>
+          <p class="section-subtitle" data-translate="detailsSubtitle">The beauty of two thousand years of stone</p>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-item reveal" style="transition-delay:0.1s">
+            <div class="detail-item-bg gb-arch"></div>
+            <div class="detail-item-overlay">
+              <div>
+                <div class="detail-item-label" data-translate="det1">The Arches</div>
+                <div class="detail-item-desc" data-translate="det1d">80 archways per tier · Doric, Ionic, Corinthian
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-item reveal" style="transition-delay:0.2s">
+            <div class="detail-item-bg db-2" style="display:flex;align-items:center;justify-content:center">
+              <svg viewBox="0 0 200 150" width="180" height="135" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g stroke="#c4962a" stroke-width="1.5" fill="rgba(196,150,42,0.05)">
+                  <path d="M40 140 L40 60 Q40 20 100 20 Q160 20 160 60 L160 140 Z" />
+                  <path d="M60 140 L60 65 Q60 35 100 35 Q140 35 140 65 L140 140" />
+                  <line x1="30" y1="140" x2="170" y2="140" />
+                  <line x1="30" y1="135" x2="170" y2="135" />
+                </g>
+              </svg>
+            </div>
+            <div class="detail-item-overlay">
+              <div>
+                <div class="detail-item-label" data-translate="det2">Roman Vaults</div>
+                <div class="detail-item-desc" data-translate="det2d">Barrel vaults in opus incertum and opus mixtum
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-item reveal" style="transition-delay:0.3s">
+            <div class="detail-item-bg db-3" style="display:flex;align-items:center;justify-content:center">
+              <svg viewBox="0 0 200 150" width="180" height="135" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g fill="rgba(196,150,42,0.08)" stroke="#c4962a" stroke-width="1">
+                  <!-- Stone texture pattern -->
+                  <rect x="10" y="20" width="50" height="25" rx="1" />
+                  <rect x="70" y="20" width="60" height="25" rx="1" />
+                  <rect x="140" y="20" width="50" height="25" rx="1" />
+                  <rect x="30" y="55" width="55" height="25" rx="1" />
+                  <rect x="95" y="55" width="55" height="25" rx="1" />
+                  <rect x="158" y="55" width="32" height="25" rx="1" />
+                  <rect x="10" y="90" width="45" height="25" rx="1" />
+                  <rect x="65" y="90" width="60" height="25" rx="1" />
+                  <rect x="135" y="90" width="55" height="25" rx="1" />
+                  <rect x="20" y="125" width="55" height="20" rx="1" />
+                  <rect x="85" y="125" width="50" height="20" rx="1" />
+                  <rect x="145" y="125" width="45" height="20" rx="1" />
+                </g>
+              </svg>
+            </div>
+            <div class="detail-item-overlay">
+              <div>
+                <div class="detail-item-label" data-translate="det3">Travertine Masonry</div>
+                <div class="detail-item-desc" data-translate="det3d">~100,000 m³ quarried at Tivoli · Held without
+                  mortar</div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-item reveal" style="transition-delay:0.1s">
+            <div class="detail-item-bg db-4" style="display:flex;align-items:center;justify-content:center">
+              <svg viewBox="0 0 200 150" width="180" height="135" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Column detail -->
+                <g stroke="#c4962a" stroke-width="1.5" fill="rgba(196,150,42,0.08)">
+                  <rect x="85" y="10" width="30" height="10" rx="1" /> <!-- Capital top -->
+                  <path d="M85 20 Q85 30 80 35 L80 120 L120 120 L120 35 Q115 30 115 20 Z" /> <!-- Shaft -->
+                  <rect x="75" y="120" width="50" height="8" rx="1" /> <!-- Base -->
+                  <rect x="70" y="128" width="60" height="6" rx="1" /> <!-- Plinth -->
+                  <!-- Fluting lines -->
+                  <line x1="90" y1="20" x2="90" y2="118" stroke-width="0.5" stroke-dasharray="none" />
+                  <line x1="95" y1="20" x2="95" y2="118" stroke-width="0.5" />
+                  <line x1="100" y1="20" x2="100" y2="118" stroke-width="0.5" />
+                  <line x1="105" y1="20" x2="105" y2="118" stroke-width="0.5" />
+                  <line x1="110" y1="20" x2="110" y2="118" stroke-width="0.5" />
+                </g>
+              </svg>
+            </div>
+            <div class="detail-item-overlay">
+              <div>
+                <div class="detail-item-label" data-translate="det4">Engaged Columns</div>
+                <div class="detail-item-desc" data-translate="det4d">Doric (1st) · Ionic (2nd) · Corinthian (3rd) orders
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-item reveal" style="transition-delay:0.2s">
+            <div class="detail-item-bg db-5"
+              style="display:flex;align-items:center;justify-content:center;font-size:4rem" role="img"
+              aria-label="Staircase detail">🪜</div>
+            <div class="detail-item-overlay">
+              <div>
+                <div class="detail-item-label" data-translate="det5">Corridors &amp; Stairways</div>
+                <div class="detail-item-desc" data-translate="det5d">Interlocking staircases leading to each tier</div>
+              </div>
+            </div>
+          </div>
+          <div class="detail-item reveal" style="transition-delay:0.3s">
+            <div class="detail-item-bg gb-hero" style="filter:brightness(0.5) sepia(0.3)"></div>
+            <div class="detail-item-overlay"
+              style="background:linear-gradient(to top, rgba(8,7,5,0.9) 0%, rgba(8,7,5,0.2) 100%)">
+              <div>
+                <div class="detail-item-label" data-translate="det6">Aerial Silhouette</div>
+                <div class="detail-item-desc" data-translate="det6d">188m × 156m · The largest amphitheatre ever built
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+   FOOTER
+   ============================================================ -->
+    <footer id="footer" role="contentinfo">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-brand-name">THE COLOSSEUM</div>
+          <div class="footer-brand-sub">The Eternal Arena · Rome, Italy</div>
+          <p class="footer-tagline" data-translate="footerTagline">"Explore. Learn. Experience Ancient Rome."</p>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-translate="footerExplore">Explore</div>
+          <ul class="footer-links">
+            <li><a href="#history" data-translate="navHistory">History</a></li>
+            <li><a href="#timeline" data-translate="navTimeline">Timeline</a></li>
+            <li><a href="#architecture" data-translate="navArchitecture">Architecture</a></li>
+            <li><a href="#experience-3d" data-translate="nav3D">3D Experience</a></li>
+            <li><a href="#gladiators" data-translate="navGladiators">Gladiators</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-translate="footerDiscover">Discover</div>
+          <ul class="footer-links">
+            <li><a href="#gallery" data-translate="navGallery">Gallery</a></li>
+            <li><a href="#then-now" data-translate="thenNowTitle">Then &amp; Now</a></li>
+            <li><a href="#hypogeum" data-translate="navHypogeum">Hypogeum</a></li>
+            <li><a href="#facts" data-translate="navFacts">Fascinating Facts</a></li>
+            <li><a href="#myth-fact" data-translate="navMyth">Myth vs. Fact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-translate="footerSources">Sources &amp; References</div>
+          <ul class="footer-links">
+            <li><a href="https://whc.unesco.org/en/list/91" target="_blank" rel="noopener">UNESCO World Heritage</a>
+            </li>
+            <li><a href="https://www.colosseo.it" target="_blank" rel="noopener">Parco Archeologico del Colosseo</a>
+            </li>
+            <li><a href="#" aria-label="Suetonius, Lives of the Twelve Caesars (source reference)">Suetonius — Lives of
+                the Twelve Caesars</a></li>
+            <li><a href="#" aria-label="Pliny the Elder, Natural History (source reference)">Pliny the Elder — Natural
+                History</a></li>
+            <li><a href="#" aria-label="Keith Hopkins and Mary Beard, The Colosseum (source reference)">Hopkins &amp;
+                Beard — The Colosseum</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-text" data-translate="footerCopyright">
+          © 2024 The Colosseum — The Eternal Arena · Historical information for educational purposes
+        </div>
+        <div class="footer-controls">
+          <a href="https://instagram.com/osamh.hu" target="_blank" rel="noopener noreferrer" class="social-link"
+            aria-label="Instagram"
+            style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(196, 150, 42, 0.1); border: 1px solid rgba(196, 150, 42, 0.3); color: var(--gold); transition: all 0.3s ease;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <div class="lang-switcher">
+            <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+            <span class="lang-divider">|</span>
+            <button class="lang-btn" data-lang="ar" onclick="switchLang('ar')">AR</button>
+          </div>
+          <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+            aria-label="Back to top">
+            ↑ <span data-translate="backToTop">Top</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ============================================================
+   SCRIPTS
+   ============================================================ -->
+
+  <!-- Three.js from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Core JS files -->
+  <script src="js/language.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/comparison.js"></script>
+
+</body>
+
+</html>
