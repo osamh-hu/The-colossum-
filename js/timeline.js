@@ -1,5 +1,6 @@
 /* ============================================================
-   TIMELINE.JS — Interactive Horizontal Timeline
+   TIMELINE.JS — Interactive Horizontal Timeline with Live Translations
+   The Colosseum — The Eternal Arena
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,16 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
   timelineEvents.forEach(event => {
     event.addEventListener('click', () => {
       updateDetailPanel(event);
-      
+
       // Scroll track to center the clicked event
       const containerWidth = timelineTrack.parentElement.clientWidth;
       const eventRect = event.getBoundingClientRect();
       const trackRect = timelineTrack.getBoundingClientRect();
-      
-      // Calculate relative position within the track
+
       const eventCenterOffset = (eventRect.left - trackRect.left) + (eventRect.width / 2);
       const targetScrollLeft = eventCenterOffset - (containerWidth / 2);
-      
+
       timelineTrack.parentElement.scrollTo({
         left: targetScrollLeft,
         behavior: 'smooth'
@@ -44,19 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function updateDetailPanel(eventElement) {
-    // Remove active from all
+    if (!eventElement) return;
+
+    // Update active class
     timelineEvents.forEach(e => e.classList.remove('active'));
-    // Add to current
     eventElement.classList.add('active');
 
-    // Get data
     const year = eventElement.getAttribute('data-year');
-    
-    // Check for translated data via language system
     const titleKey = eventElement.getAttribute('data-title-key');
     const textKey = eventElement.getAttribute('data-text-key');
     const lang = window.currentLang ? window.currentLang() : 'en';
-    
+
     let title = eventElement.getAttribute('data-title');
     let text = eventElement.getAttribute('data-text');
 
@@ -69,35 +67,41 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Animate detail panel out and in
     const detailPanel = document.getElementById('timeline-detail');
-    detailPanel.style.opacity = '0';
-    detailPanel.style.transform = 'translateY(10px)';
-    
-    setTimeout(() => {
-      detailYear.textContent = year;
-      detailTitle.textContent = title;
-      detailText.textContent = text;
-      
-      detailPanel.style.opacity = '1';
-      detailPanel.style.transform = 'translateY(0)';
-    }, 300);
+    if (detailPanel) {
+      detailPanel.style.opacity = '0';
+      detailPanel.style.transform = 'translateY(8px)';
+
+      setTimeout(() => {
+        if (detailYear) detailYear.textContent = year;
+        if (detailTitle) detailTitle.textContent = title;
+        if (detailText) detailText.textContent = text;
+
+        detailPanel.style.opacity = '1';
+        detailPanel.style.transform = 'translateY(0)';
+      }, 150);
+    }
   }
 
-  // Allow mouse wheel scrolling horizontally on the track
-  const timelineContainer = timelineTrack.parentElement;
-  timelineContainer.addEventListener('wheel', (e) => {
-    // Only scroll horizontally if deltaY is significant and deltaX is not
-    // This prevents blocking vertical page scroll completely
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      // Check if we're at the edges to allow normal vertical scrolling
-      const atStart = timelineContainer.scrollLeft <= 0 && e.deltaY < 0;
-      const atEnd = timelineContainer.scrollLeft >= (timelineContainer.scrollWidth - timelineContainer.clientWidth) && e.deltaY > 0;
-      
-      if (!atStart && !atEnd) {
-        e.preventDefault();
-        timelineContainer.scrollLeft += e.deltaY;
-      }
-    }
+  // Update on language switch
+  window.addEventListener('colosseum-lang-change', () => {
+    const activeEvent = document.querySelector('.timeline-event.active') || timelineEvents[0];
+    if (activeEvent) updateDetailPanel(activeEvent);
   });
+
+  // Mouse wheel horizontal scroll on track
+  const timelineContainer = timelineTrack.parentElement;
+  if (timelineContainer) {
+    timelineContainer.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        const atStart = timelineContainer.scrollLeft <= 0 && e.deltaY < 0;
+        const atEnd = timelineContainer.scrollLeft >= (timelineContainer.scrollWidth - timelineContainer.clientWidth - 5) && e.deltaY > 0;
+
+        if (!atStart && !atEnd) {
+          e.preventDefault();
+          timelineContainer.scrollLeft += e.deltaY;
+        }
+      }
+    }, { passive: false });
+  }
 });

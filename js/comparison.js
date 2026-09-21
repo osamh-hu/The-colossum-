@@ -1,5 +1,6 @@
 /* ============================================================
-   COMPARISON.JS — Before/After Image Slider
+   COMPARISON.JS — Before/After Image Slider with LTR/RTL Support
+   The Colosseum — The Eternal Arena
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,9 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!container || !divider || !afterImage) return;
 
   let isDragging = false;
+  let currentPercent = 50;
 
-  // Initial state - 50%
-  updateDivider(50);
+  function updatePosition(percent) {
+    percent = Math.max(0, Math.min(100, percent));
+    currentPercent = percent;
+
+    divider.style.left = `${percent}%`;
+    afterImage.style.clipPath = `polygon(${percent}% 0, 100% 0, 100% 100%, ${percent}% 100%)`;
+    divider.setAttribute('aria-valuenow', Math.round(percent));
+  }
+
+  function handleMove(pageX) {
+    const rect = container.getBoundingClientRect();
+    const x = pageX - (rect.left + window.pageXOffset);
+    const percent = (x / rect.width) * 100;
+    updatePosition(percent);
+  }
 
   // Mouse events
   divider.addEventListener('mousedown', (e) => {
@@ -22,8 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('mouseup', () => {
-    isDragging = false;
-    container.classList.remove('dragging');
+    if (isDragging) {
+      isDragging = false;
+      container.classList.remove('dragging');
+    }
   });
 
   window.addEventListener('mousemove', (e) => {
@@ -32,14 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Touch events
-  divider.addEventListener('touchstart', (e) => {
+  divider.addEventListener('touchstart', () => {
     isDragging = true;
     container.classList.add('dragging');
   }, { passive: true });
 
   window.addEventListener('touchend', () => {
-    isDragging = false;
-    container.classList.remove('dragging');
+    if (isDragging) {
+      isDragging = false;
+      container.classList.remove('dragging');
+    }
   });
 
   window.addEventListener('touchmove', (e) => {
@@ -47,32 +66,35 @@ document.addEventListener('DOMContentLoaded', () => {
     handleMove(e.touches[0].pageX);
   }, { passive: true });
 
-  // Click on container to jump to position
+  // Click on container jumps to position
   container.addEventListener('click', (e) => {
     if (e.target === divider || divider.contains(e.target)) return;
     handleMove(e.pageX);
   });
 
-  function handleMove(pageX) {
-    const rect = container.getBoundingClientRect();
-    // Calculate relative x position accounting for page scroll
-    let x = pageX - (rect.left + window.pageXOffset);
-    
-    // Bounds checking
-    if (x < 0) x = 0;
-    if (x > rect.width) x = rect.width;
-    
-    // Calculate percentage
-    const percent = (x / rect.width) * 100;
-    updateDivider(percent);
-  }
+  // Keyboard accessibility
+  divider.setAttribute('tabindex', '0');
+  divider.setAttribute('role', 'slider');
+  divider.setAttribute('aria-label', 'Image comparison slider');
+  divider.setAttribute('aria-valuemin', '0');
+  divider.setAttribute('aria-valuemax', '100');
 
-  function updateDivider(percent) {
-    divider.style.left = `${percent}%`;
-    // Clip the after image (modern colosseum) so the before image (ancient) shows underneath
-    // Note: The structure is <div before> beneath <div after>.
-    // So 'after' needs to be clipped. 
-    // clip-path: polygon(X% 0, 100% 0, 100% 100%, X% 100%) hides the left part of the top image.
-    afterImage.style.clipPath = `polygon(${percent}% 0, 100% 0, 100% 100%, ${percent}% 100%)`;
-  }
+  divider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      updatePosition(currentPercent - 5);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      updatePosition(currentPercent + 5);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      updatePosition(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      updatePosition(100);
+    }
+  });
+
+  // Initial set
+  updatePosition(50);
 });
